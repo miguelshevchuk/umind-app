@@ -1,16 +1,16 @@
 import { authenticatedApi, postHeaders } from './common';
 
-export const authenticatedPost = (
+export const authenticatedPost = async (
     url: string,
     payload: any = {},
     args: RequestInit = {}
   ) =>
-    authenticatedApi(
+    await authenticatedApi(
       url,
       {
         method: 'POST',
         headers: postHeaders,
-        body: JSON.stringify(payload),
+        body: payload,
         ...args,
       },
     );

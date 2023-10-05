@@ -10,15 +10,20 @@ export interface Analisis {
   };
 
 const analizarImagenAPI = async (imagen: Imagen): Promise<Analisis[]> => {
-    return authenticatedPost(`/predict`, imagen);
+    return await authenticatedPost(`/predict`, imagen);
   };
 
 const analizarImagenAPI2 = async (imagen: Imagen)=> {
     return [{descripcion: "asdasd", indicador: "holas"}, {descripcion: "asdasd", indicador: "holas2"}];
 };
 
+const analizarImagenAPI3 = async (imagen: string)=> {
+  return await authenticatedPost(`/predict`, imagen);
+};
+
 export const UMindAPI = {
     analizarImagenAPI,
     analizarImagenAPI2,
+    analizarImagenAPI3
   };
   

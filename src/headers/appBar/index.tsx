@@ -1,69 +1,78 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import {styles} from "./styles"
 import Home from '../../pages/Home';
 import LoadImg from '../../pages/LoadImg';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { CustomDrawerContent } from '../DrawerContent';
-import { COLORS, IMAGES } from '../../constants';
+import { COLORS } from '../../constants';
 import Resultados from '../../pages/Resultados';
+import TabBar from '../tabBar';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Header = ({navigation}) => {
+
+const Header = () => {
     const _goBack = () => console.log('Abriendo menu');
 
   return (
-    <>
+    <View>
         <Appbar.Header mode='center-aligned' style={[styles.headerContainer]}>
-        <TouchableOpacity
-            onPress={() => {
-                navigation.openDrawer();
-            }}
-            >
-                <Appbar.Action icon="menu"/>
-            </TouchableOpacity>
+        
           <Appbar.Content title="UMind" color={COLORS.grey}/>
         </Appbar.Header>
-    </>
+    </View>
   );
 };
 
+const LoadImgStack = createNativeStackNavigator();
+
+function LoadImgStackScreen() {
+  return (
+    <LoadImgStack.Navigator screenOptions={{ headerShown: false }}>
+      <LoadImgStack.Screen name="LoadImg" component={LoadImg} />
+      <LoadImgStack.Screen name="Resultados" component={Resultados} />
+    </LoadImgStack.Navigator>
+  );
+}
 
 
-
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 const FeedStack = () => {
   return (
-    <Drawer.Navigator 
+    <Tab.Navigator 
         initialRouteName="Home"
         screenOptions={{
-            header: ({navigation }) => (
+            header: () => (
               <>
-                <Header navigation={navigation} />
+                <Header />
               </>
             ),
           }}
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-    
+        tabBar={(props) => <TabBar {...props} />}
     >
-          <Drawer.Screen
+          <Tab.Screen
             name="Home"
             component={Home}
-            options={{ headerTitle: 'Home' }}            
+            options={{ 
+              tabBarLabel: 'Home',
+              tabBarIcon: ({ color, size }) => {
+                return <Icon name="home" size={size} color={color} />;
+              }
+            }}            
           />
-        <Drawer.Screen
+        <Tab.Screen
           name="LoadImg"
-          component={LoadImg}
-          options={{ headerTitle: 'Analizar Imagen' }}
+          component={LoadImgStackScreen}
+          options={{ 
+            tabBarLabel: 'Analizar',
+            tabBarIcon: ({ color, size }) => {
+              return <Icon name="image" size={size} color={color} />;
+            }
+          }}  
         />
-        <Drawer.Screen
-          name="Resultados"
-          component={Resultados}
-          options={{ headerTitle: 'Resultados' }}
-        />
-    </Drawer.Navigator>
+    </Tab.Navigator>
   );
 };
 

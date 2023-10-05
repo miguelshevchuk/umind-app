@@ -38,7 +38,8 @@ export const authenticatedApi = async (
   url: string,
   args: RequestInit = {}
 ) => {
-  return api(url, args).catch((err: ErrorResponse) => {
+  console.log(args.body)
+  return await api(url, args).catch((err: ErrorResponse) => {
     console.log(err)
     console.log('error during calling', JSON.stringify(err));
     return err.response.json().then(errResponse => {
@@ -47,7 +48,7 @@ export const authenticatedApi = async (
   });
 };
 
-export const api = (
+export const api = async (
   url: string,
   args: RequestInit = {}
 ) => {
@@ -55,9 +56,11 @@ export const api = (
   if (!url.startsWith('/')) {
     absoluteUrl = `/${url}`;
   }
-
+  
   const finalUrl = `${getEndpoints().apiHostUrl}${absoluteUrl}`;
-  return fetch(finalUrl, args)
+  console.log(finalUrl);
+
+  return await fetch(finalUrl, args)
     .catch(r => {
       throw r;
     })
@@ -67,6 +70,7 @@ export const api = (
       console.log(
         `Hubo un problema con la petición Fetch a ${finalUrl}. Error: ${error.message}`,
       );
+      //return `Hubo un problema con la petición Fetch a ${finalUrl}. Error: ${error.message}`;
       throw error;
     });
 };

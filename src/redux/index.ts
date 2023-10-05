@@ -5,5 +5,5 @@ const actions = {
   umind: umindSlice.actions,
 };
 
-export { store, useAppSelector } from './store';
+export { store, persistedStore, useAppSelector } from './store';
 export { actions };

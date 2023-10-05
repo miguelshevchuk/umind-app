@@ -5,21 +5,24 @@ import {
  } from 'react-native';
  import { Text, Button } from 'react-native-paper';
  import * as ImagePicker from 'react-native-image-picker';
-import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 import { styles } from './styles';
 import {COLORS} from "../../constants"
 import { actions } from '../../redux';
-import { useAppDispatch } from '../../redux/store';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
  
  export default function LoadImg({navigation}) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [err, setErr] = useState("");
   const dispatch = useAppDispatch();
+  
 
    const openImagePicker = async () => {
 
     await launchImageLibrary({
           mediaType: 'photo'
         }, (response) => {
+          setErr("");
         if (response.didCancel) {
           console.log('User cancelled image picker');
         } else if (response.errorCode) {
@@ -39,6 +42,7 @@ import { useAppDispatch } from '../../redux/store';
         maxHeight: 2000,
         maxWidth: 2000,
       }, response => {
+        setErr("");
         console.log('Response = ', response);
         if (response.didCancel) {
           console.log('User cancelled camera');
@@ -54,16 +58,30 @@ import { useAppDispatch } from '../../redux/store';
     }
 
     const realizarAnalisis = async () => {
-      await dispatch(actions.umind.analizarImagen(selectedImage));
-      navigation.navigate("Resultados")
-      
+      setErr("");
+
+      if(!selectedImage){
+        setErr(`Debe seleccionar una imagen para procesar`)
+      }else{
+        await dispatch(await actions.umind.analizarImagen(selectedImage))
+        .then((payload) => {
+          if(payload.error){
+            setErr(`Ocurrio un error al procesar la imagen: ${payload.error.message}`)
+          }else{
+            navigation.navigate("Resultados")
+          }
+        })
+      }
+        //setErr(JSON.stringify(e))
+        //<Text style={{color: 'black'}}>{err}</Text>
+        //navigation.navigate("Resultados")
     }
     
     return(
       <View style={{ flex: 1}}>
-       <View style={{ flex: 1, alignItems: "center"}} >
+       <View style={{ alignItems: "center"}} >
         <Text variant="displayMedium" style={styles.title}>Analizar Imagen</Text>
-
+        
           <View style={{ marginTop: 20, flex: 0, flexDirection: 'row'}}>
             
               <Button onPress={openImagePicker} mode="contained" 
@@ -82,29 +100,26 @@ import { useAppDispatch } from '../../redux/store';
               >
                 Camara
               </Button>
-            </View>
-            <View>
-            {selectedImage && (
+            </View>      
+          
+      </View>
+        <View style={{ marginTop: 20, flex: 1}}>
+        {selectedImage && (
                   <Image
                     source={{ uri: selectedImage }}
                     style={{ flex: 1 }}
                     resizeMode="contain"
                   />
             )}
-            </View>
-            
           
-          
-      </View>
-        <View>
             <Button onPress={realizarAnalisis} mode="contained"
                 buttonColor={COLORS.primary}
-                textColor={COLORS.grey}
-                disabled={selectedImage != null}
-                style={{marginBottom: 50, marginTop:30 }}
+                textColor={COLORS.grey}                
+                style={{marginTop:30 }}
               >
                 Analizar
             </Button>
+            <Text style={{marginTop:10, marginBottom: 50, color: 'red'}}>{err}</Text>
           </View>
       
       </View>
