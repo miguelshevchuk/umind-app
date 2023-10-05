@@ -23,7 +23,7 @@ export const postHeaders = {
   'Content-Type': 'application/json; charset=utf-8',
 };
 
-const formatResponse = (response: Response) => {
+export const formatResponse = (response: Response) => {
   const contentType = response.headers.get('content-type');
   if (!contentType || contentType.indexOf('application/json') >= 0) {
     return response.json().catch(() => {
@@ -38,7 +38,6 @@ export const authenticatedApi = async (
   url: string,
   args: RequestInit = {}
 ) => {
-  console.log(args.body)
   return await api(url, args).catch((err: ErrorResponse) => {
     console.log(err)
     console.log('error during calling', JSON.stringify(err));
@@ -75,11 +74,11 @@ export const api = async (
     });
 };
 
-const checkStatus = (response: Response) => {
+export const checkStatus = (response: Response) => {
   if (response.ok) {
     return response;
   }
-
+  
   const error = new Error(response.statusText);
   (error as any).response = response;
   throw error;

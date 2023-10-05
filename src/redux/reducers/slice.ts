@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Analisis, UMindAPI } from '../../api/umind.api';
 import { buildRequest, localImageToBase64, transformarImagen } from '../../util/images';
+import { uploadImage } from '../../api/cloudinary';
 
 export type State = {
   resultados: Analisis[],
@@ -20,15 +21,17 @@ const analizarImagen = createAsyncThunk(
         
         await dispatch(sliceActions.analizar([]));
         //console.log(base64Images)
-        const payload = {
-          imagen: base64Images[0]
-        }
 
-
-        console.log("payload")
+        //console.log("payload")
         //console.log(JSON.stringify(payload))
 
-        const analisis = await UMindAPI.analizarImagenAPI3(await buildRequest(imagen));
+        const cloudinary = await uploadImage(base64Images[0])
+
+        const payload = {
+          imagen: cloudinary.url
+        }
+        console.log(payload)
+        const analisis = await UMindAPI.analizarImagenAPI(payload);
         await dispatch(sliceActions.analizar(analisis));
         return analisis;
       } catch (error) {

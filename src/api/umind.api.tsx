@@ -10,7 +10,7 @@ export interface Analisis {
   };
 
 const analizarImagenAPI = async (imagen: Imagen): Promise<Analisis[]> => {
-    return await authenticatedPost(`/predict`, imagen);
+    return await authenticatedPost(`/predict/url`, imagen);
   };
 
 const analizarImagenAPI2 = async (imagen: Imagen)=> {

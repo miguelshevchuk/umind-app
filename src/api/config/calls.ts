@@ -10,7 +10,7 @@ export const authenticatedPost = async (
       {
         method: 'POST',
         headers: postHeaders,
-        body: payload,
+        body: JSON.stringify(payload),
         ...args,
       },
     );
