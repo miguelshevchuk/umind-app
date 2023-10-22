@@ -49,7 +49,7 @@ Ejecute el siguiente comando para generar la APK que luego se instalara en el te
 .\gradlew assembleRelease
 ```
 
-## Paso 2: Instalar APK en su telefono
+## Paso 3: Instalar APK en su telefono
 
 La APK generada se encuentra en la carpeta **_raiz_/android/app/build/outputs/apk/release/app-release.apk** .
 Copie el archivo a su telefono y ejecutelo para instalar la aplicacion. Asegurese de que el telefono cuente con los permisos necesarios para instalarlo, ya que probablemente se la detecte como aplicacion insegura por no provenir del Store de Google.
