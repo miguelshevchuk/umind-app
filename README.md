@@ -1,6 +1,6 @@
 # Pasos iniciales
 
->**Note**: Asegurese de haber completado el [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instrucciones hasta el paso "Crear una nueva aplicacion", antes de continuar.
+>**Note**: Asegurese de haber completado el instructivo [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) hasta el paso "Crear una nueva aplicacion", antes de continuar.
 
 ## Paso 1: Iniciar Servidor Metro
 
