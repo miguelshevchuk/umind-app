@@ -2,9 +2,19 @@
 
 >**Note**: Asegurese de haber completado el instructivo [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) hasta el paso "Crear una nueva aplicacion", antes de continuar.
 
-## Paso 1: Iniciar Servidor Metro
+## Paso 1: Instalar dependencias
 
-Primero, usted necesitara iniciar **Metro**.
+Primero, usted necesitara instalar las dependencias del proyecto.
+
+Para esto, ejecute el siguiente comando desde la _raiz_ del proyecto:
+
+```bash
+yarn install
+```
+
+## Paso 2: Iniciar Servidor Metro
+
+Luego, usted necesitara iniciar **Metro**.
 
 Para iniciar metro, ejecute el siguiente comando desde la _raiz_ del proyecto:
 
@@ -16,7 +26,7 @@ npm start
 yarn start
 ```
 
-## Paso 2: Iniciar el proyecto
+## Paso 3: Iniciar el proyecto
 
 Este proyecto esta preparado para ejecutarse en dispositivos Android. Asegurese de tener un emulador instalado para poder iniciar el proyecto (Por ejemplo, Android Studio).
 Una vez iniciado Metro, seleccione la opcion _run on Android_ 
