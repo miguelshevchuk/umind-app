@@ -15,16 +15,20 @@ export default function Resultados({navigation}) {
   return (
     <ScrollView>
     <View style={{ marginTop: 30, flex: 1, alignItems: "center"}}>
-        <Text variant="displaySmall" >Resultados</Text>
-        { (resultados != null) ? resultados.map( (resultado, index) => {return(
-            <Card mode='outlined' style={{width: "80%", marginTop: 30}}>
-                <Card.Content>
-                    <Text variant="titleLarge">{resultado.Indicador}</Text>
-                    <Text variant="bodySmall">{resultado.Descripcion}</Text>
-                </Card.Content>
-            </Card>)}
+        
+        { (resultados == undefined || resultados != null) ? resultados.map( (resultado, index) => {return(
+            <View>
+                <Text variant="displaySmall" >Resultados</Text>
+                <Card mode='outlined' style={{width: "80%", marginTop: 30}}>
+                    <Card.Content>
+                        <Text variant="titleLarge">{resultado.Indicador}</Text>
+                        <Text variant="bodySmall">{resultado.Descripcion}</Text>
+                    </Card.Content>
+                </Card>
+            </View>
+            )}
             ) :
-            <Text variant="displaySmall" >No hay Resultados</Text>
+            <Text variant="displaySmall" >No hay Resultados para la imagen seleccionada</Text>
         }
 
         <Button onPress={back} mode="contained" 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import {styles} from "./styles"
 import Home from '../../pages/Home';
@@ -18,8 +18,7 @@ const Header = () => {
   return (
     <View>
         <Appbar.Header mode='center-aligned' style={[styles.headerContainer]}>
-        
-          <Appbar.Content title="UMind" color={COLORS.grey}/>
+          <Image source={require("../../assets/TituloHeader.png")}  />
         </Appbar.Header>
     </View>
   );

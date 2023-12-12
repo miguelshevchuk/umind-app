@@ -32,8 +32,9 @@ com.umind.app-main-30 C:\Workspace\PFI\Codigo\umind\android\app\src\main\res
 com.umind.app-release-31 C:\Workspace\PFI\Codigo\umind\android\app\src\release\res
 com.umind.app-packaged_res-32 C:\Workspace\PFI\Codigo\umind\node_modules\@react-native-async-storage\async-storage\android\build\intermediates\packaged_res\release
 com.umind.app-packaged_res-33 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-config\android\build\intermediates\packaged_res\release
-com.umind.app-packaged_res-34 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-image-base64-png\android\build\intermediates\packaged_res\release
-com.umind.app-packaged_res-35 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-image-picker\android\build\intermediates\packaged_res\release
-com.umind.app-packaged_res-36 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\release
-com.umind.app-packaged_res-37 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-screens\android\build\intermediates\packaged_res\release
-com.umind.app-packaged_res-38 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-vector-icons\android\build\intermediates\packaged_res\release
+com.umind.app-packaged_res-34 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-fs\android\build\intermediates\packaged_res\release
+com.umind.app-packaged_res-35 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-image-base64-png\android\build\intermediates\packaged_res\release
+com.umind.app-packaged_res-36 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-image-picker\android\build\intermediates\packaged_res\release
+com.umind.app-packaged_res-37 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-safe-area-context\android\build\intermediates\packaged_res\release
+com.umind.app-packaged_res-38 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-screens\android\build\intermediates\packaged_res\release
+com.umind.app-packaged_res-39 C:\Workspace\PFI\Codigo\umind\node_modules\react-native-vector-icons\android\build\intermediates\packaged_res\release
